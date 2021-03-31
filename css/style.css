@@ -1,0 +1,160 @@
+html{
+    height: 100vh;
+}
+
+body{
+    background-color: rgb(204, 46, 46);
+    min-width: 280px;
+    background: url("../img/cinema-background.jpg") center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+h1, h2, h3{
+    color:rgb(201, 15, 15);
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 1em 0 1em 0!important;
+}
+
+.flex{
+    display: flex;
+}
+
+.f-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.center{
+    text-align: center;
+    width: 100%;
+}
+
+.acenter{
+    align-items: center;
+}
+
+.jcenter{
+    justify-content: center;
+}
+
+.jaround{
+    justify-content: space-around;
+}
+
+.mleft{
+    margin-left: 15px;
+}
+
+.mright{
+    margin-right: 15px;
+}
+
+.mtop{
+    margin-top: 15px;
+}
+
+.marginY{
+    margin: 1.5em 0;
+}
+
+.mauto{
+    margin: 0 auto;
+}
+
+.bgwhite{
+    background: rgb(255, 255, 255);
+    color: black;
+}
+
+.bgdark{
+    background: rgb(39, 39, 39);
+    color: white;
+}
+
+figure{
+    margin: 0;
+    overflow:hidden!important;
+}
+
+figure img{
+    width: 100%;
+    display: block;
+}
+
+.image-film{
+    height: 300px;
+    width: 220px;
+    cursor: pointer;
+}
+
+.image-film-m{
+    height: 145px;
+    width: 110px;
+    margin: 0 1rem 0 0!important;
+}
+
+.image-film img{
+    height:100%;
+    width:100%;
+
+}
+
+.film-box{
+    background: rgb(66, 66, 66);
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 5px black;
+    margin: 1.5em 0;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+nav [type=search]{
+    margin-left: 10vw;
+    min-width: 200px!important;
+}
+
+.pad5{
+    padding: 0 5%;
+}
+
+footer{
+    margin-top: auto;
+    width: 100%;
+}
+
+.test{
+    color: purple;
+}
+
+.detail-film{
+    box-shadow: 0 0 5px black;
+    padding: 10px;
+    background: rgb(39, 39, 39);
+    color: white;
+}
+
+main{
+    margin: 0 auto!important;
+}
+
+.success{
+    color: rgb(0, 153, 0);
+    font-size: 2.5em;
+    text-align: center;
+    margin: 1em;
+}
+
+.margin-center{
+    margin: 0 auto;
+}
+
+
+
+
