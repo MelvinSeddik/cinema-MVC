@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="css/header.css">
 
 </head>
@@ -28,22 +25,48 @@
                     <li class="nav-item">
                         <a href="index.php?action=listReal" class="nav-link">Réalisateurs</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="index.php?action=listRoles" class="nav-link">Rôles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?action=listGenres" class="nav-link">Genres</a>
+                    </li>
                 </ul>
 
-                <form action="" method="GET">
-                    <input type="search" name="search" placeholder="Chercher un film, acteur...">
-                    <input type="submit" name="submit" value="Search">
+                <form action="" method="GET" class="container">
+                <div class="input-group row">
+                    <input type="search" name="search" id="search" placeholder="Chercher un film, acteur..." class="form-control col-3">
+                    <button type="submit" name="submit" value="Search" class="btn btn-primary"><i class="margin-center fas fa-search"></i></button>
+                </div>
+
                 </form>
                 
+                <?php
+                if(!isset($_SESSION["user"])){
+                    echo '<a href="index.php?action=signUpForm" class="btn btn-outline-primary mx-2 text-white">Inscription</a>';
+                    echo '<a href="index.php?action=loginForm" class="btn btn-primary mx-2 text-white">Connexion</a>';
+                }
+                else{
+                    echo "<span class='mx-2 text-white'>Bienvenue ".$_SESSION["user"]["fullname"]." !</span>";
+                    echo '
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="index.php?action=logout">Déconnexion</a>
+                        </div>
+                    </div>';
+
+                }
+                
+
+                ?>
+
             </div>
 
         </nav>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+
 
     </body>
 </html>

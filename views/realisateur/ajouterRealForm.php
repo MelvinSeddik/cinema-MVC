@@ -26,7 +26,7 @@ ob_start();
 
     <div class="form-group">
         <label for="naissance_real">Date de naissance : </label>
-        <input type="text" class="form-control" id="naissance_real" name="naissance_real" placeholder="aaaa-mm-jj" required>
+        <input type="date" class="form-control" id="naissance_real" name="naissance_real" placeholder="aaaa-mm-jj" required>
     </div class="form-group">
       
     <button type="submit" class="btn btn-primary">Ajouter</button>

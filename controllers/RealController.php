@@ -8,7 +8,8 @@ class RealController{
         $dao = new DAO();
         
         $sql = "SELECT id, CONCAT(prenom, ' ', nom) AS realisateur
-        FROM Realisateur";
+        FROM Realisateur
+        ORDER BY realisateur";
         $realisateurs = $dao->executerRequete($sql);
 
         require "views/realisateur/listReal.php";
@@ -57,7 +58,8 @@ class RealController{
         $prenom = filter_var($array["prenom_real"], FILTER_SANITIZE_STRING);
         $nom = filter_var($array["nom_real"], FILTER_SANITIZE_STRING);
         $sexe = filter_var($array["sexe_real"], FILTER_SANITIZE_STRING);
-        $naissance = filter_var($array["naissance_real"], FILTER_SANITIZE_STRING);
+        $naissance = new DateTime(filter_var($array["naissance_real"], FILTER_SANITIZE_STRING));
+        $naissance = $naissance->format("Ymd");
 
         $ajoutReal = $dao->executerRequete($sql, [":prenom"=> $prenom, ":nom"=> $nom, ":sexe"=> $sexe, ":dateNaissance"=> $naissance]);
 
@@ -81,7 +83,8 @@ class RealController{
         $prenom = filter_var($array["prenom_real"], FILTER_SANITIZE_STRING);
         $nom = filter_var($array["nom_real"], FILTER_SANITIZE_STRING);
         $sexe = filter_var($array["sexe_real"], FILTER_SANITIZE_STRING);
-        $naissance = filter_var($array["naissance_real"], FILTER_SANITIZE_STRING);
+        $naissance = new DateTime(filter_var($array["naissance_real"], FILTER_SANITIZE_STRING));
+        $naissance = $naissance->format("Ymd");
 
         $editReal = $dao->executerRequete($sql, [":prenom"=> $prenom, ":nom"=> $nom, ":sexe"=> $sexe, ":dateNaissance"=> $naissance, ":id"=>$id]);
 

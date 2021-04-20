@@ -26,7 +26,7 @@ $real = $realisateur->fetch();
     </div>
     <div class="form-group">
         <label for="naissance_real">Date de naissance : </label>
-        <input type="text" class="form-control" id="naissance_real" name="naissance_real" placeholder="1967-05-19" value="<?=$real["dateNaissance"]?>" required>
+        <input type="date" class="form-control" id="naissance_real" name="naissance_real" placeholder="1967-05-19" value="<?=$real["dateNaissance"]?>" required>
     </div>
       
     <button type="submit" class="btn btn-primary">Modifier</button>

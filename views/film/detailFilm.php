@@ -5,7 +5,9 @@ ob_start();
 $detailFilm = $film->fetch();
 $genres = FilmController::getGenres($detailFilm["id"]);
 $acteurs = FilmController::getActeurs($detailFilm["id"]);
-
+$duree = $detailFilm["duree"];
+$duree = floor(($duree/60))."h".sprintf('%02d', ($duree%60));
+$note = $detailFilm["note"] + 0;
 
 $genresArray = [];
 foreach($genres as $genre){
@@ -27,10 +29,10 @@ foreach($acteurs as $acteur){
     <div class="flex">
         <figure class="image-film"><img src="<?= $detailFilm["imgPath"]?>" alt=""></figure>
         <div class="f-column jaround mleft">
-            <p>Sortie en <?= $detailFilm["annee"]?> / durée : <?= $detailFilm["duree"]?> / genres : <?= implode($genresArray, ", ") ?></p>
+            <p>Sortie en <?= $detailFilm["annee"]?> / Durée : <?= $duree?> / Genres : <?= implode(", ", $genresArray) ?></p>
             <p>De <?="<a href='index.php?action=detailRealisateur&id=".$detailFilm['id_realisateur']."'>"?><?= $detailFilm["realisateur"]?></a></p>
-            <p>Avec <?= implode($acteursArray, ", ") ?></p>
-            <p>Note : <?= $detailFilm["note"]?> / 5</p>
+            <p>Avec <?= implode(", ", $acteursArray) ?></p>
+            <p>Note : <?= $note?> / 5</p>
         </div>
     </div>
 

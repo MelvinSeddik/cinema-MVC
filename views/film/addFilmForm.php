@@ -4,12 +4,9 @@ ob_start();
 
 ?>
 
-<form action="./index.php?action=addFilm" method="POST" class="margin-center">
-<?php
- if(isset($ajoutFilm)){
-    echo "<span class='success center'>Film ".$titre." ajouté avec succès!</span>";
-}
-?>
+<form action="./index.php?action=addFilm" method="POST" name="film_form" id="film-form" class="margin-center col-7" enctype="multipart/form-data">
+
+
     <h2>Ajouter un film</h2>
 
     <div class="form-group">
@@ -19,7 +16,7 @@ ob_start();
 
     <div class="form-group">
         <label for="date_film">Date de sortie : </label>
-        <input type="text" class="form-control" id="date_film" name="date_film" placeholder="1998-01-07" required>
+        <input type="date" class="form-control" id="date_film" name="date_film" placeholder="1998-01-07" required>
     </div>
 
     <div class="form-group">
@@ -29,7 +26,9 @@ ob_start();
 
     <div class="form-group">
         <label for="resume_film">Resume : </label>
-        <textarea type="text" class="form-control" id="resume_film" name="resume_film" placeholder="Le paquebot le plus grand et le plus moderne du monde..."></textarea>
+        <textarea type="text" class="form-control" id="resume_film" name="resume_film" placeholder="Le paquebot le plus grand et le plus moderne du monde...">
+
+        </textarea>
     </div>
 
     <div class="form-group">
@@ -38,36 +37,45 @@ ob_start();
     </div>
 
     <div class="form-group">
-        <label for="image_film">Chemin vers l'image : </label>
-        <input type="text" class="form-control" id="image_film" name="image_film" placeholder="img/titanic.jpg">
+        <label for="image_film">Image : </label>
+        <input type="file" class="form-control" id="image_film" name="image_film">
     </div>
 
     <div class="form-group">
-        <select class="custom-select custom-select-lg mb-3">
-            <option selected>Ajoutez un réalisateur</option>
+        <label>Selectionnez un réalisateur</label>
+        <select name="select_real" class="custom-select custom-select-lg mb-3">
             <?php
-            while($realisateurs = $realisateur->fetch()){
-                echo "<option>".$realisateurs["realisateur"]."</option>";
+            while($realisateurs = $allRealisateurs->fetch()){
+                echo "<option value=".$realisateurs["id"].">".$realisateurs["realisateur"]."</option>";
             }
             ?>
         </select>
     </div>
 
-
     <div class="form-group">
-        <select multiple class="custom-select custom-select-lg mb-3">
-            <option selected>Selectionnez plusieurs genres</option>
+        <label>Selectionnez un ou plusieurs genre(s)</label>
+        <select name="select_genres[]" class="custom-select custom-select-lg mb-3 multiple-select" multiple required>
             <?php
-            $genres = GenreController::getGenres();
-            while($genres = $genre->fetch()){
-                echo "<option>".$genres["libelle"]."</option>";
+            while($genres = $allGenres->fetch()){
+                echo "<option value=".$genres["id"].">".$genres["libelle"]."</option>";
             }
             ?>
         </select>
     </div>
+
+    <div class="form-group" id="casting">
+
+
+    </div>
+    
+    <div class="form-group">
+        <span id="add-casting" class="btn btn-secondary"><i class="fas fa-plus"></i> Ajouter un casting </span>
+    </div>
+
+
 
        
-    <button type="submit" class="btn btn-primary">Ajouter</button>
+    <button type="submit" class="btn btn-primary">Ajouter le film</button>
     
 </form>
 
@@ -75,4 +83,7 @@ ob_start();
 
 $titre = "Ajouter un film";
 $contenu = ob_get_clean();
+$jsPath = "./js/main.js";
 require "views/template.php"; 
+
+?>

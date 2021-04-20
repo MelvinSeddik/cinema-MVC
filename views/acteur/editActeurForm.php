@@ -31,7 +31,7 @@ $acteur = $acteur->fetch();
 
     <div class="form-group">
         <label for="naissance_acteur">Date de naissance : </label>
-        <input type="text" class="form-control" id="naissance_acteur" name="naissance_acteur" value="<?=$acteur["dateNaissance"]?>" required>
+        <input type="date" class="form-control" id="naissance_acteur" name="naissance_acteur" value="<?=$acteur["dateNaissance"]?>" required>
     </div class="form-group">
       
     <button type="submit" class="btn btn-primary">Modifier</button>

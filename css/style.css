@@ -76,6 +76,20 @@ h1,h2,h3,h4,h5,h6{
     color: white;
 }
 
+select[multiple]{
+    background: rgb(255, 255, 255);
+}
+
+option{
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+.bgblack{
+    background: black;
+    color: rgb(255, 255, 255);
+}
+
 figure{
     margin: 0;
     overflow:hidden!important;
@@ -142,6 +156,11 @@ footer{
 
 main{
     margin: 0 auto!important;
+    padding: 20px 0;
+}
+
+.log-form{
+    background: rgb(22, 22, 22);
 }
 
 .success{
@@ -155,6 +174,9 @@ main{
     margin: 0 auto;
 }
 
-
+.required::after{
+    content: " *";
+    color: red;
+}
 
 

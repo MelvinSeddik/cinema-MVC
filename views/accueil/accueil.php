@@ -26,7 +26,7 @@ function getGenres($id){
         array_push($genresArray, "<a href='index.php?action=filmsGenre&id=".$genres["id"]."'>".$genres["libelle"]."</a>");
 
     }
-    return implode($genresArray, ", ");
+    return implode(", ", $genresArray);
 }
 
 function showDetails($id){

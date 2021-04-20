@@ -8,7 +8,9 @@ class ActeurController{
         $dao = new DAO();
         
         $sql = "SELECT id, CONCAT(prenom, ' ', nom) AS acteur
-        FROM Acteur";
+        FROM Acteur
+        ORDER BY acteur";
+        
         $acteurs = $dao->executerRequete($sql);
 
         require "views/acteur/listActeurs.php";
@@ -18,10 +20,14 @@ class ActeurController{
 
         $dao = new DAO();
 
-        $sql = "SELECT id, prenom, nom, CONCAT(prenom, ' ', nom) AS acteur, sexe, dateNaissance
+        $sql = "SELECT a.id, prenom, nom, CONCAT(prenom, ' ', nom) AS acteur, sexe, dateNaissance, id_role, personnage, id_film, titre
         FROM acteur a
+        INNER JOIN casting c ON C.id_acteur = a.id
+        INNER JOIN Role r ON r.id = c.id_role
+        INNER JOIN Film f ON f.id = c.id_film
         WHERE a.id = :id";
         $acteur = $dao->executerRequete($sql, [":id"=> $id]);
+        $acteur2 = $dao->executerRequete($sql, [":id"=> $id]);
         
         if($edit){
             return $acteur;
@@ -29,22 +35,6 @@ class ActeurController{
         else{
             require "views/acteur/detailActeur.php";
         }
-    }
-
-    public function filmographie($id){
-        
-        $dao = new DAO();
-
-        $sql = "SELECT f.id, titre
-        FROM Acteur a
-        INNER JOIN casting c ON a.id = c.id_acteur
-        INNER JOIN Film f ON f.id = c.id_film
-        WHERE c.id_acteur = :id";
-
-        $filmsActeur = $dao->executerRequete($sql, [":id"=> $id]);
-
-
-        return $filmsActeur->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function addActeurForm(){
@@ -60,7 +50,8 @@ class ActeurController{
         $prenom = filter_var($array["prenom_acteur"], FILTER_SANITIZE_STRING);
         $nom = filter_var($array["nom_acteur"], FILTER_SANITIZE_STRING);
         $sexe = filter_var($array["sexe_acteur"], FILTER_SANITIZE_STRING);
-        $naissance = filter_var($array["naissance_acteur"], FILTER_SANITIZE_STRING);
+        $naissance = new DateTime(filter_var($array["naissance_acteur"], FILTER_SANITIZE_STRING));
+        $naissance = $naissance->format("Ymd");
 
         $ajoutActeur = $dao->executerRequete($sql, [":prenom"=> $prenom, ":nom"=> $nom, ":sexe"=> $sexe, ":dateNaissance"=> $naissance]);
 
@@ -84,7 +75,8 @@ class ActeurController{
         $prenom = filter_var($array["prenom_acteur"], FILTER_SANITIZE_STRING);
         $nom = filter_var($array["nom_acteur"], FILTER_SANITIZE_STRING);
         $sexe = filter_var($array["sexe_acteur"], FILTER_SANITIZE_STRING);
-        $naissance = filter_var($array["naissance_acteur"], FILTER_SANITIZE_STRING);
+        $naissance = new DateTime(filter_var($array["naissance_acteur"], FILTER_SANITIZE_STRING));
+        $naissance = $naissance->format("Ydm");
 
         $editReal = $dao->executerRequete($sql, [":prenom"=> $prenom, ":nom"=> $nom, ":sexe"=> $sexe, ":dateNaissance"=> $naissance, ":id"=>$id]);
 

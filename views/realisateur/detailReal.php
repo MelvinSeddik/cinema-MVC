@@ -10,7 +10,7 @@ $filmographie = RealController::filmographie($detailReal["id"]);
 ?>
 
 <article class="pad5">
-    <h1 class="center">Fiche de <?= $detailReal['prenom']." ".$detailReal["nom"]?></h1>
+    <h1 class="center">Fiche du réalisateur <?= $detailReal['prenom']." ".$detailReal["nom"]?></h1>
 
     <h2>Informations</h2>
     <ul>
@@ -44,3 +44,4 @@ $realisateur->closeCursor();
 $titre = $detailReal['prenom']." ".$detailReal["nom"];
 $contenu = ob_get_clean();
 require "views/template.php";
+?>
